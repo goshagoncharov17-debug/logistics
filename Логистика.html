@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Задачи по 3 и 4 теме — Гончарова Г П 3-4</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0e11;
+    --surface: #18171c;
+    --border: #2a2830;
+    --accent: #d4a853;
+    --accent2: #7c6aff;
+    --text: #e8e5f0;
+    --muted: #8a8699;
+    --tab-active: #d4a853;
+    --table-head: #1e1d25;
+    --table-alt: #161520;
+    --table-border: #2e2b3a;
+    --conclusion: #1a1830;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* === HEADER === */
+  header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--accent);
+    padding: 28px 40px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+  }
+
+  .header-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  header h1 span {
+    color: var(--accent);
+  }
+
+  /* === TABS === */
+  .tabs-wrapper {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    gap: 4px;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 14px 28px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    text-transform: uppercase;
+  }
+
+  .tab-btn:hover { color: var(--text); }
+
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom: 3px solid var(--accent);
+  }
+
+  /* === MAIN CONTENT === */
+  main {
+    flex: 1;
+    padding: 40px 40px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* === TASK CARD === */
+  .task-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    animation: fadeSlide 0.35s ease both;
+  }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .task-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--table-head);
+  }
+
+  .task-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background: rgba(212,168,83,0.1);
+    border: 1px solid rgba(212,168,83,0.3);
+    padding: 4px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .task-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .task-body {
+    padding: 24px;
+  }
+
+  /* === TABLES === */
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    border: 1px solid var(--table-border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 480px;
+  }
+
+  thead tr {
+    background: var(--table-head);
+  }
+
+  thead th {
+    padding: 11px 14px;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--table-border);
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--table-border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:nth-child(even) { background: var(--table-alt); }
+  tbody tr:hover { background: rgba(124,106,255,0.07); }
+
+  tbody td {
+    padding: 10px 14px;
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  tbody td:first-child { color: var(--text); font-weight: 500; }
+
+  /* bold total rows */
+  .row-total td {
+    font-weight: 600;
+    color: var(--accent) !important;
+    background: rgba(212,168,83,0.06) !important;
+  }
+
+  /* === CONCLUSION === */
+  .conclusion {
+    background: var(--conclusion);
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 6px 6px 0;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #c8c4d8;
+  }
+
+  .conclusion strong {
+    color: var(--accent2);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  /* === BULLET LIST === */
+  .bullet-list {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+
+  .bullet-list li {
+    padding: 5px 0 5px 20px;
+    position: relative;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .bullet-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* === SECTION TITLE (for grouped tasks) === */
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 36px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label:first-child { margin-top: 0; }
+
+  /* === FOOTER === */
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-top: 2px solid var(--accent);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 200;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
+  }
+
+  .footer-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.2s, text-shadow 0.2s;
+  }
+
+  footer a:hover {
+    color: #f0c97a;
+    text-shadow: 0 0 12px rgba(212,168,83,0.5);
+  }
+
+  /* === CHART === */
+  .chart-wrap {
+    margin: 20px 0 16px;
+    background: #111018;
+    border: 1px solid var(--table-border);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chart-wrap canvas {
+    max-width: 100%;
+    border-radius: 4px;
+  }
+
+  .chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    header, main { padding-left: 16px; padding-right: 16px; }
+    .tabs-wrapper { padding: 0 16px; }
+    .tab-btn { padding: 12px 14px; font-size: 11px; }
+    footer { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Практические занятия</div>
+  <h1>Задачи по <span>3 и 4 теме</span> &nbsp;·&nbsp; Гончарова Г П &nbsp;·&nbsp; гр. 3-4</h1>
+</header>
+
+<nav class="tabs-wrapper">
+  <button class="tab-btn active" onclick="switchTab('t3', this)">Тема 3</button>
+  <button class="tab-btn" onclick="switchTab('t4', this)">Тема 4</button>
+</nav>
+
+<main>
+
+<!-- ==================== ТЕМА 3 ==================== -->
+<div id="t3" class="tab-content active">
+
+  <p class="section-label">ПЗ — 13.04.2026 · Выбор поставщика и анализ затрат</p>
+
+  <!-- 3.1 -->
+  <div class="task-card">
+    <div class="task-header">
+      <span class="task-number">ЗАДАЧА 3.1</span>
+      <span class="task-title">Выбор поставщика по взвешенным критериям</span>
+    </div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Критерий</th><th>Удельный вес</th><th>Поставщик 1</th><th>Поставщик 2</th><th>Поставщик 3</th></tr></thead>
+          <tbody>
+            <tr><td>Цена</td><td>40% (0,4)</td><td>0,4 × 9 = 3,6</td><td>0,4 × 8 = 3,2</td><td>0,4 × 7 = 2,8</td></tr>
+            <tr><td>Качество</td><td>20% (0,2)</td><td>0,2 × 7 = 1,4</td><td>0,2 × 8 = 1,6</td><td>0,2 × 6 = 1,2</td></tr>
+            <tr><td>Сроки поставки</td><td>20% (0,2)</td><td>0,2 × 8 = 1,6</td><td>0,2 × 8 = 1,6</td><td>0,2 × 7 = 1,4</td></tr>
+            <tr><td>Условия оплаты</td><td>5% (0,05)</td><td>0,05 × 4 = 0,2</td><td>0,05 × 4 = 0,2</td><td>0,05 × 8 = 0,4</td></tr>
+            <tr><td>Гарантия на изделие</td><td>10% (0,1)</td><td>0,1 × 3 = 0,3</td><td>0,1 × 4 = 0,4</td><td>0,1 × 5 = 0,5</td></tr>
+            <tr><td>Доп. услуги</td><td>5% (0,05)</td><td>0,05 × 5 = 0,25</td><td>0,05 × 8 = 0,4</td><td>0,05 × 6 = 0,3</td></tr>
+            <tr class="row-total"><td>Итого</td><td>100%</td><td>7,35</td><td>7,40</td><td>6,60</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>Наивысший балл получил Поставщик 2 (7,40). Несмотря на то, что у первого поставщика лучше цена, второй поставщик оказался более сбалансированным за счёт качества, гарантии и дополнительных услуг.</div>
+    </div>
+  </div>
+
+  <!-- 3.2 -->
+  <div class="task-card">
+    <div class="task-header">
+      <span class="task-number">ЗАДАЧА 3.2</span>
+      <span class="task-title">Выбор поставщика по взвешенным критериям</span>
+    </div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Критерий</th><th>Удельный вес</th><th>Поставщик 1</th><th>Поставщик 2</th><th>Поставщик 3</th></tr></thead>
+          <tbody>
+            <tr><td>Цена</td><td>50% (0,5)</td><td>0,5 × 9 = 4,5</td><td>0,5 × 7 = 3,5</td><td>0,5 × 6 = 3,0</td></tr>
+            <tr><td>Качество</td><td>25% (0,25)</td><td>0,25 × 4 = 1,0</td><td>0,25 × 5 = 1,25</td><td>0,25 × 9 = 2,25</td></tr>
+            <tr><td>Сроки поставки</td><td>20% (0,2)</td><td>0,2 × 4 = 0,8</td><td>0,2 × 6 = 1,2</td><td>0,2 × 9 = 1,8</td></tr>
+            <tr><td>Доп. услуги</td><td>5% (0,05)</td><td>0,05 × 8 = 0,4</td><td>0,05 × 5 = 0,25</td><td>0,05 × 4 = 0,2</td></tr>
+            <tr class="row-total"><td>Итоговая оценка</td><td>100%</td><td>6,70</td><td>6,20</td><td>7,25</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>Несмотря на то, что первый поставщик лидирует по самому весомому критерию (цене), Поставщик 3 набирает больше всего баллов — 7,25 — за счёт высокого качества и отличных сроков поставки.</div>
+    </div>
+  </div>
+
+  <!-- 3.3 -->
+  <div class="task-card">
+    <div class="task-header">
+      <span class="task-number">ЗАДАЧА 3.3</span>
+      <span class="task-title">Выбор поставщика для премиального сегмента</span>
+    </div>
+    <div class="task-body">
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Для премиального сегмента «под заказ» приоритеты распределяются следующим образом:</p>
+      <ul class="bullet-list">
+        <li>Качество — критически важно (премиум-класс не терпит брака)</li>
+        <li>Сроки поставки — очень важны (нужно успеть изготовить мебель за 1 месяц)</li>
+        <li>Цена — важна, но вторична для премиум-сегмента</li>
+        <li>Условия оплаты — наименее важны при наличии 60% предоплаты от клиентов</li>
+      </ul>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Критерий</th><th>Уд. вес</th><th>П1 (балл)</th><th>П2 (балл)</th><th>П1 (балл × вес)</th><th>П2 (балл × вес)</th></tr></thead>
+          <tbody>
+            <tr><td>Цена</td><td>20%</td><td>10</td><td>8</td><td>0,20 × 10 = 2,0</td><td>0,20 × 8 = 1,6</td></tr>
+            <tr><td>Качество</td><td>40%</td><td>5</td><td>10</td><td>0,40 × 5 = 2,0</td><td>0,40 × 10 = 4,0</td></tr>
+            <tr><td>Сроки поставки</td><td>30%</td><td>6</td><td>10</td><td>0,30 × 6 = 1,8</td><td>0,30 × 10 = 3,0</td></tr>
+            <tr><td>Условия оплаты</td><td>10%</td><td>5</td><td>10</td><td>0,10 × 5 = 0,5</td><td>0,10 × 10 = 1,0</td></tr>
+            <tr class="row-total"><td>Сумма</td><td>100%</td><td>—</td><td>—</td><td>6,3</td><td>9,6</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>С огромным отрывом побеждает Поставщик 2 (9,6 против 6,3). В премиальном производстве отсутствие брака и быстрая поставка гораздо важнее, чем экономия в 100 долларов.</div>
+    </div>
+  </div>
+
+  <p class="section-label">Задачи 3.4 – 3.9 · Анализ «производить или покупать»</p>
+
+  <!-- 3.4 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.4</span><span class="task-title">Производить или покупать?</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Наименование показателя</th><th>Ед. изм.</th><th>Расчёт</th><th>Значение</th></tr></thead>
+          <tbody>
+            <tr><td>Переменные затраты</td><td>ден. ед./шт.</td><td>240 + 45 =</td><td>285</td></tr>
+            <tr><td>Постоянные затраты в месяц</td><td>ден. ед./мес.</td><td>—</td><td>70 000</td></tr>
+            <tr><td>Постоянные затраты на 1 изделие</td><td>ден. ед./шт.</td><td>70 000 / 600 =</td><td>116,67</td></tr>
+            <tr><td>Себестоимость изготовления 1 изд.</td><td>ден. ед./шт.</td><td>285 + 116,67 =</td><td>401,67</td></tr>
+            <tr class="row-total"><td>Цена покупного изделия</td><td>ден. ед./шт.</td><td>—</td><td>500</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>Себестоимость производства (401,67) ниже цены покупки (500). Экономия на каждом изделии составит 98,33 ден. ед. Выгоднее производить.</div>
+    </div>
+  </div>
+
+  <!-- 3.5 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.5</span><span class="task-title">Производить или покупать?</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Наименование показателя</th><th>Ед. изм.</th><th>Расчёт</th><th>Значение</th></tr></thead>
+          <tbody>
+            <tr><td>Переменные затраты (материалы + з/п)</td><td>ден. ед./шт.</td><td>250 + 50 =</td><td>300</td></tr>
+            <tr><td>Постоянные затраты в месяц</td><td>ден. ед./мес.</td><td>—</td><td>60 000</td></tr>
+            <tr><td>Постоянные затраты на 1 изделие</td><td>ден. ед./шт.</td><td>60 000 / 500 =</td><td>120</td></tr>
+            <tr><td>Себестоимость изготовления 1 изд.</td><td>ден. ед./шт.</td><td>300 + 120 =</td><td>420</td></tr>
+            <tr class="row-total"><td>Цена готового изделия (покупка)</td><td>ден. ед./шт.</td><td>—</td><td>490</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>Собственное производство обходится дешевле на 70 ден. ед. за штуку. При объёме в 500 шт. общая экономия составит 35 000 ден. ед. в месяц. Выгоднее производить.</div>
+    </div>
+  </div>
+
+  <!-- 3.6 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.6</span><span class="task-title">Производить или покупать?</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Наименование показателя</th><th>Ед. изм.</th><th>Расчёт</th><th>Значение</th></tr></thead>
+          <tbody>
+            <tr><td>Переменные затраты (материалы + з/п)</td><td>ден. ед./шт.</td><td>280 + 75 =</td><td>355</td></tr>
+            <tr><td>Постоянные затраты в месяц</td><td>ден. ед./мес.</td><td>—</td><td>150 000</td></tr>
+            <tr><td>Постоянные затраты на 1 изделие</td><td>ден. ед./шт.</td><td>150 000 / 1000 =</td><td>150</td></tr>
+            <tr><td>Себестоимость изготовления 1 изд.</td><td>ден. ед./шт.</td><td>355 + 150 =</td><td>505</td></tr>
+            <tr class="row-total"><td>Цена готового изделия (купить)</td><td>ден. ед./шт.</td><td>—</td><td>500</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>В данной ситуации выгоднее купить готовое изделие. Собственное производство при текущем объёме (1 000 шт./мес.) не оправдывает себя из-за высоких постоянных затрат, которые делают итоговую себестоимость выше рыночной цены.</div>
+    </div>
+  </div>
+
+  <!-- 3.7 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.7</span><span class="task-title">Производить или покупать? (с амортизацией)</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Наименование показателя</th><th>Ед. изм.</th><th>Расчёт</th><th>Значение</th></tr></thead>
+          <tbody>
+            <tr><td>Переменные затраты (материалы + з/п)</td><td>ден. ед./шт.</td><td>35 + 12 =</td><td>47</td></tr>
+            <tr><td>Амортизация оборудования в месяц</td><td>ден. ед./мес.</td><td>6 000 / 24 =</td><td>250</td></tr>
+            <tr><td>Итого постоянные затраты в месяц</td><td>ден. ед./мес.</td><td>15 000 + 250 =</td><td>15 250</td></tr>
+            <tr><td>Постоянные затраты на 1 изделие</td><td>ден. ед./шт.</td><td>15 250 / 2500 =</td><td>6,10</td></tr>
+            <tr><td>Себестоимость изготовления 1 изд.</td><td>ден. ед./шт.</td><td>47 + 6,10 =</td><td>53,10</td></tr>
+            <tr class="row-total"><td>Цена готового изделия (покупка)</td><td>ден. ед./шт.</td><td>—</td><td>65</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>Собственное производство значительно выгоднее. Даже с учётом покупки и амортизации оборудования, высокая потребность в изделиях (2 500 шт.) позволяет эффективно распределить постоянные расходы.</div>
+    </div>
+  </div>
+
+  <!-- 3.8 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.8</span><span class="task-title">Производить или покупать? (с амортизацией)</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Наименование показателя</th><th>Ед. изм.</th><th>Расчёт</th><th>Значение</th></tr></thead>
+          <tbody>
+            <tr><td>Переменные затраты (материалы + з/п)</td><td>ден. ед./шт.</td><td>30 + 10 =</td><td>40</td></tr>
+            <tr><td>Амортизация оборудования в месяц</td><td>ден. ед./мес.</td><td>5 000 / 24 =</td><td>208,33</td></tr>
+            <tr><td>Итого постоянные затраты в месяц</td><td>ден. ед./мес.</td><td>16 000 + 208,33 =</td><td>16 208,33</td></tr>
+            <tr><td>Постоянные затраты на 1 изделие</td><td>ден. ед./шт.</td><td>16 208,33 / 2000 =</td><td>8,10</td></tr>
+            <tr><td>Себестоимость изготовления 1 изд.</td><td>ден. ед./шт.</td><td>40 + 8,10 =</td><td>48,10</td></tr>
+            <tr class="row-total"><td>Цена готового изделия (покупка)</td><td>ден. ед./шт.</td><td>—</td><td>70</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>Собственное производство значительно выгоднее покупки. При объёме в 2 000 шт. в месяц суммарная экономия составит 43 800 ден. ед. по сравнению с закупкой готовых изделий.</div>
+    </div>
+  </div>
+
+  <!-- 3.9 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.9</span><span class="task-title">Производить или покупать? (с амортизацией)</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Наименование показателя</th><th>Ед. изм.</th><th>Расчёт</th><th>Значение</th></tr></thead>
+          <tbody>
+            <tr><td>Переменные затраты (материалы + з/п)</td><td>ден. ед./шт.</td><td>500 + 100 =</td><td>600</td></tr>
+            <tr><td>Амортизация оборудования в месяц</td><td>ден. ед./мес.</td><td>250 000 / 24 =</td><td>10 416,67</td></tr>
+            <tr><td>Итого постоянные затраты в месяц</td><td>ден. ед./мес.</td><td>150 000 + 10 416,67 =</td><td>160 416,67</td></tr>
+            <tr><td>Постоянные затраты на 1 изделие</td><td>ден. ед./шт.</td><td>160 416,67 / 1000 =</td><td>160,42</td></tr>
+            <tr><td>Себестоимость изготовления 1 изд.</td><td>ден. ед./шт.</td><td>600 + 160,42 =</td><td>760,42</td></tr>
+            <tr class="row-total"><td>Цена готового изделия (покупка)</td><td>ден. ед./шт.</td><td>—</td><td>700</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>В данной ситуации выгоднее купить готовое изделие. Себестоимость собственного производства превышает рыночную цену из-за значительных вложений в оборудование и высоких постоянных затрат при текущем объёме потребности (1 000 шт.).</div>
+    </div>
+  </div>
+
+  <p class="section-label">Задачи 3.10 – 3.12 · Прямые закупки vs. посредник</p>
+
+  <!-- 3.10 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.10</span><span class="task-title">У производителя или у оптовика?</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Вариант закупки</th><th>Расчёт</th><th>Итоговая стоимость</th></tr></thead>
+          <tbody>
+            <tr><td>У производителя</td><td>400 + 65 + 50 =</td><td>515</td></tr>
+            <tr class="row-total"><td>У оптовика</td><td>—</td><td>500</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>Покупка изделия у производителя напрямую обходится дороже на 15 ден. ед. за счёт высоких затрат на транспортировку и хранение на собственном складе. В данном случае посредник (оптовик) предлагает более выгодную конечную цену.</div>
+    </div>
+  </div>
+
+  <!-- 3.11 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.11</span><span class="task-title">У производителя или у оптовика?</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Вариант закупки</th><th>Расчёт</th><th>Итоговая стоимость</th></tr></thead>
+          <tbody>
+            <tr><td>У производителя</td><td>350 + 70 + 45 =</td><td>465</td></tr>
+            <tr class="row-total"><td>У оптовика</td><td>—</td><td>450</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>Покупка напрямую у производителя обходится дороже на 15 ден. ед. Основная причина — высокие транспортные расходы, которые перекрывают разницу в закупочной цене. Логистически и финансово выгоднее работать через оптовика.</div>
+    </div>
+  </div>
+
+  <!-- 3.12 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.12</span><span class="task-title">У производителя или у оптовика?</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Вариант закупки</th><th>Расчёт затрат</th><th>Итоговая стоимость</th></tr></thead>
+          <tbody>
+            <tr><td>У производителя</td><td>70 + 10 + 15 =</td><td>95</td></tr>
+            <tr class="row-total"><td>У оптовика</td><td>—</td><td>100</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>В данном случае прямая закупка у производителя обходится дешевле на 5 ден. ед. Низкая цена производителя в сочетании с небольшими транспортными и складскими расходами делает транзитную форму снабжения экономически более выгодной.</div>
+    </div>
+  </div>
+
+  <p class="section-label">Задачи 3.13 – 3.16 · Оборачиваемость запасов</p>
+
+  <!-- 3.13 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.13</span><span class="task-title">Период оборачиваемости запасов</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Наименование показателя</th><th>Ед. изм.</th><th>Расчёт</th><th>Значение</th></tr></thead>
+          <tbody>
+            <tr><td>Остатки запасов на начало года</td><td>тыс. руб.</td><td>—</td><td>330</td></tr>
+            <tr><td>Остатки запасов на конец года</td><td>тыс. руб.</td><td>—</td><td>310</td></tr>
+            <tr><td>Средняя величина запасов</td><td>тыс. руб.</td><td>(330 + 310) / 2 =</td><td>320</td></tr>
+            <tr><td>Себестоимость реализованной продукции</td><td>тыс. руб./год</td><td>—</td><td>1 200</td></tr>
+            <tr class="row-total"><td>Период оборачиваемости запасов</td><td>дни</td><td>(320 × 360) / 1200 =</td><td>96</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>Запас оборачивается за 96 дней. Это достаточно медленный цикл (всего 3,75 раза в год).</div>
+    </div>
+  </div>
+
+  <!-- 3.14 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.14</span><span class="task-title">Период оборачиваемости запасов</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Наименование показателя</th><th>Ед. изм.</th><th>Расчёт</th><th>Значение</th></tr></thead>
+          <tbody>
+            <tr><td>Остатки запасов на начало года</td><td>тыс. руб.</td><td>—</td><td>330</td></tr>
+            <tr><td>Остатки запасов на конец года</td><td>тыс. руб.</td><td>—</td><td>310</td></tr>
+            <tr><td>Средняя величина запасов</td><td>тыс. руб.</td><td>(330 + 310) / 2 =</td><td>320</td></tr>
+            <tr><td>Себестоимость реализованной продукции</td><td>тыс. руб./год</td><td>—</td><td>1 500</td></tr>
+            <tr class="row-total"><td>Период оборачиваемости запасов</td><td>дни</td><td>(320 × 360) / 1500 =</td><td>76,8</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>При росте объёмов реализации тот же запас стал оборачиваться быстрее — за 76,8 дня.</div>
+    </div>
+  </div>
+
+  <!-- 3.15 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.15</span><span class="task-title">Период оборачиваемости запасов</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Наименование показателя</th><th>Ед. изм.</th><th>Расчёт</th><th>Значение</th></tr></thead>
+          <tbody>
+            <tr><td>Остатки запасов на начало года</td><td>тыс. руб.</td><td>—</td><td>180</td></tr>
+            <tr><td>Остатки запасов на конец года</td><td>тыс. руб.</td><td>—</td><td>200</td></tr>
+            <tr><td>Средняя величина запасов</td><td>тыс. руб.</td><td>(180 + 200) / 2 =</td><td>190</td></tr>
+            <tr><td>Себестоимость реализованной продукции</td><td>тыс. руб./год</td><td>—</td><td>3 500</td></tr>
+            <tr class="row-total"><td>Период оборачиваемости запасов</td><td>дни</td><td>(190 × 360) / 3500 =</td><td>19,5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>Запас оборачивается всего за 19,5 дня, что говорит о высокой ликвидности и минимальном «замораживании» денег на складе.</div>
+    </div>
+  </div>
+
+  <!-- 3.16 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАЧА 3.16</span><span class="task-title">Определение норматива запасов</span></div>
+    <div class="task-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Наименование показателя</th><th>Ед. изм.</th><th>Расчёт</th><th>Значение</th></tr></thead>
+          <tbody>
+            <tr><td>Себестоимость реализованной продукции</td><td>тыс. руб./год</td><td>—</td><td>3 500</td></tr>
+            <tr><td>Период оборачиваемости запасов</td><td>дни</td><td>—</td><td>28</td></tr>
+            <tr class="row-total"><td>Средняя величина запасов</td><td>тыс. руб.</td><td>(28 × 3500) / 360 =</td><td>272,22</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conclusion"><strong>Вывод</strong>Чтобы обеспечить оборачиваемость в 28 дней при заданном объёме продаж, средний остаток на складе не должен превышать 272,22 тыс. руб.</div>
+    </div>
+  </div>
+
+</div><!-- /t3 -->
+
+
+<!-- ==================== ТЕМА 4 ==================== -->
+<div id="t4" class="tab-content">
+
+  <p class="section-label">ПЗ — 27.04.2026 · Метод центра тяжести и пробной точки</p>
+
+  <!-- 4.1 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАНИЕ 4.1</span><span class="task-title">Метод центра тяжести (без тарифа)</span></div>
+    <div class="task-body">
+      <ul class="bullet-list">
+        <li>Σ Грузооборот = 15 + 10 + 20 + 5 + 10 + 20 + 45 + 30 = <strong>155</strong></li>
+        <li>Σ (X × Грузооборот) = (10×15)+(23×10)+(48×20)+(36×5)+(60×10)+(67×20)+(81×45)+(106×30) = <strong>10 285</strong></li>
+        <li>Σ (Y × Грузооборот) = (10×15)+(41×10)+(59×20)+(27×5)+(34×10)+(20×20)+(29×45)+(45×30) = <strong>5 270</strong></li>
+        <li>X = 10 285 / 155 = <strong>66,35</strong> &nbsp;·&nbsp; Y = 5 270 / 155 = <strong>34,00</strong></li>
+      </ul>
+      <div class="chart-wrap">
+        <canvas id="c41" width="560" height="380"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#7c6aff"></div>Магазины</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#d4a853"></div>Склад (66,35; 34,00)</div>
+        </div>
+      </div>
+      <div class="conclusion"><strong>Ответ</strong>Координаты оптимального расположения склада: <strong>(66,35 ; 34,00)</strong></div>
+    </div>
+  </div>
+
+  <!-- 4.2 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАНИЕ 4.2</span><span class="task-title">Метод центра тяжести (без тарифа)</span></div>
+    <div class="task-body">
+      <ul class="bullet-list">
+        <li>Σ Грузооборот = 15 + 15 + 10 + 25 + 25 + 20 + 45 + 15 = <strong>170</strong></li>
+        <li>Σ (X × Грузооборот) = 150+345+480+900+1500+1340+3645+1590 = <strong>9 950</strong></li>
+        <li>Σ (Y × Грузооборот) = 150+615+590+675+850+400+1305+675 = <strong>5 260</strong></li>
+        <li>X = 9 950 / 170 = <strong>58,53</strong> &nbsp;·&nbsp; Y = 5 260 / 170 = <strong>30,94</strong></li>
+      </ul>
+      <div class="chart-wrap">
+        <canvas id="c42" width="560" height="380"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#7c6aff"></div>Магазины</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#d4a853"></div>Склад (58,53; 30,94)</div>
+        </div>
+      </div>
+      <div class="conclusion"><strong>Ответ</strong>Координаты оптимального расположения склада: <strong>(58,53 ; 30,94)</strong></div>
+    </div>
+  </div>
+
+  <!-- 4.3 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАНИЕ 4.3</span><span class="task-title">Метод центра тяжести (без тарифа)</span></div>
+    <div class="task-body">
+      <ul class="bullet-list">
+        <li>Σ Грузооборот = <strong>155</strong></li>
+        <li>Σ (X × Грузооборот) = <strong>10 285</strong> &nbsp;·&nbsp; Σ (Y × Грузооборот) = <strong>5 270</strong></li>
+        <li>X = 10 285 / 155 = <strong>66,35</strong> &nbsp;·&nbsp; Y = 5 270 / 155 = <strong>34,00</strong></li>
+      </ul>
+      <div class="chart-wrap">
+        <canvas id="c43" width="560" height="380"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#7c6aff"></div>Магазины</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#d4a853"></div>Склад (66,35; 34,00)</div>
+        </div>
+      </div>
+      <div class="conclusion"><strong>Ответ</strong>Координаты оптимального расположения склада: <strong>(66,35 ; 34,00)</strong></div>
+    </div>
+  </div>
+
+  <!-- 4.4 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАНИЕ 4.4</span><span class="task-title">Метод центра тяжести (без тарифа)</span></div>
+    <div class="task-body">
+      <ul class="bullet-list">
+        <li>Σ Грузооборот = 100+110+120+105+80+60+40+57 = <strong>672</strong></li>
+        <li>Σ (X × Грузооборот) = 4000+5500+6600+3780+2720+4680+2360+5016 = <strong>34 656</strong></li>
+        <li>Σ (Y × Грузооборот) = 1200+2200+5400+3570+2080+3480+2240+2280 = <strong>22 450</strong></li>
+        <li>X = 34 656 / 672 = <strong>51,57</strong> &nbsp;·&nbsp; Y = 22 450 / 672 = <strong>33,41</strong></li>
+      </ul>
+      <div class="chart-wrap">
+        <canvas id="c44" width="560" height="380"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#7c6aff"></div>Магазины</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#d4a853"></div>Склад (51,57; 33,41)</div>
+        </div>
+      </div>
+      <div class="conclusion"><strong>Ответ</strong>Координаты оптимального расположения склада: <strong>(51,57 ; 33,41)</strong></div>
+    </div>
+  </div>
+
+  <!-- 4.5 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАНИЕ 4.5</span><span class="task-title">Метод центра тяжести (без тарифа)</span></div>
+    <div class="task-body">
+      <ul class="bullet-list">
+        <li>Σ Грузооборот = 50+100+110+40+80+50+70+40 = <strong>540</strong></li>
+        <li>Σ (X × Грузооборот) = 2500+6000+7150+1840+3520+4400+4830+3920 = <strong>34 160</strong></li>
+        <li>Σ (Y × Грузооборот) = 1000+1000+3850+960+1280+2400+3220+1200 = <strong>14 910</strong></li>
+        <li>X = 34 160 / 540 = <strong>63,26</strong> &nbsp;·&nbsp; Y = 14 910 / 540 = <strong>27,61</strong></li>
+      </ul>
+      <div class="chart-wrap">
+        <canvas id="c45" width="560" height="380"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#7c6aff"></div>Магазины</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#d4a853"></div>Склад (63,26; 27,61)</div>
+        </div>
+      </div>
+      <div class="conclusion"><strong>Ответ</strong>Координаты оптимального расположения склада: <strong>(63,26 ; 27,61)</strong></div>
+    </div>
+  </div>
+
+  <p class="section-label">Задания 4.6 – 4.9 · Метод центра тяжести с учётом тарифа</p>
+
+  <!-- 4.6 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАНИЕ 4.6</span><span class="task-title">Метод центра тяжести (с учётом тарифа)</span></div>
+    <div class="task-body">
+      <ul class="bullet-list">
+        <li>Произведения (Грузооборот × Тариф): 225, 100, 240, 90, 150, 320, 585, 360 → Σ = <strong>2 070</strong></li>
+        <li>Σ (X × Гр × Тариф) = <strong>135 295</strong> &nbsp;·&nbsp; Σ (Y × Гр × Тариф) = <strong>67 605</strong></li>
+        <li>X = 135 295 / 2 070 = <strong>65,36</strong> &nbsp;·&nbsp; Y = 67 605 / 2 070 = <strong>32,66</strong></li>
+      </ul>
+      <div class="chart-wrap">
+        <canvas id="c46" width="560" height="380"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#7c6aff"></div>Магазины</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#d4a853"></div>Склад (65,36; 32,66)</div>
+        </div>
+      </div>
+      <div class="conclusion"><strong>Ответ</strong>Координаты оптимального расположения склада: <strong>(65,36 ; 32,66)</strong></div>
+    </div>
+  </div>
+
+  <!-- 4.7 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАНИЕ 4.7</span><span class="task-title">Метод центра тяжести (с учётом тарифа)</span></div>
+    <div class="task-body">
+      <ul class="bullet-list">
+        <li>Произведения (Грузооборот × Тариф): 255, 225, 190, 550, 450, 320, 630, 285 → Σ = <strong>2 905</strong></li>
+        <li>Σ (X × Гр × Тариф) = <strong>166 325</strong> &nbsp;·&nbsp; Σ (Y × Гр × Тариф) = <strong>90 630</strong></li>
+        <li>X = 166 325 / 2 905 = <strong>57,25</strong> &nbsp;·&nbsp; Y = 90 630 / 2 905 = <strong>31,20</strong></li>
+      </ul>
+      <div class="chart-wrap">
+        <canvas id="c47" width="560" height="380"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#7c6aff"></div>Магазины</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#d4a853"></div>Склад (57,25; 31,20)</div>
+        </div>
+      </div>
+      <div class="conclusion"><strong>Ответ</strong>Координаты оптимального расположения склада: <strong>(57,25 ; 31,20)</strong></div>
+    </div>
+  </div>
+
+  <!-- 4.8 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАНИЕ 4.8</span><span class="task-title">Метод центра тяжести (с учётом тарифа)</span></div>
+    <div class="task-body">
+      <ul class="bullet-list">
+        <li>Произведения (Грузооборот × Тариф): 900, 1100, 1440, 1470, 1440, 840, 480, 912 → Σ = <strong>8 582</strong></li>
+        <li>Σ (X × Гр × Тариф) = <strong>417 316</strong> &nbsp;·&nbsp; Σ (Y × Гр × Тариф) = <strong>325 960</strong></li>
+        <li>X = 417 316 / 8 582 = <strong>48,63</strong> &nbsp;·&nbsp; Y = 325 960 / 8 582 = <strong>37,98</strong></li>
+      </ul>
+      <div class="chart-wrap">
+        <canvas id="c48" width="560" height="380"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#7c6aff"></div>Магазины</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#d4a853"></div>Склад (48,63; 37,98)</div>
+        </div>
+      </div>
+      <div class="conclusion"><strong>Ответ</strong>Координаты оптимального расположения склада: <strong>(48,63 ; 37,98)</strong></div>
+    </div>
+  </div>
+
+  <!-- 4.9 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАНИЕ 4.9</span><span class="task-title">Метод центра тяжести (с учётом тарифа)</span></div>
+    <div class="task-body">
+      <ul class="bullet-list">
+        <li>Σ (Грузооборот × Тариф) = <strong>14 910</strong></li>
+        <li>Σ (X × Гр × Тариф) = <strong>71 330</strong> &nbsp;·&nbsp; Σ (Y × Гр × Тариф) = <strong>1 011 710</strong></li>
+        <li>X = 71 330 / 14 910 = <strong>4,78</strong> &nbsp;·&nbsp; Y = 1 011 710 / 14 910 = <strong>67,85</strong></li>
+      </ul>
+      <div class="chart-wrap">
+        <canvas id="c49" width="560" height="380"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#7c6aff"></div>Магазины</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#d4a853"></div>Склад (4,78; 67,85)</div>
+        </div>
+      </div>
+      <div class="conclusion"><strong>Ответ</strong>Координаты оптимального расположения склада: <strong>(4,78 ; 67,85)</strong></div>
+    </div>
+  </div>
+
+  <p class="section-label">Задания 4.10 – 4.11 · Метод пробной точки</p>
+
+  <!-- 4.10 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАНИЕ 4.10</span><span class="task-title">Метод пробной точки</span></div>
+    <div class="task-body">
+      <ul class="bullet-list">
+        <li>Общий грузооборот = 155. Половина (медиана) = 77,5</li>
+      </ul>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ось X (по возрастанию)</th><th>Грузооборот</th><th>Нарастающий итог</th><th>Результат</th></tr></thead>
+          <tbody>
+            <tr><td>X = 10</td><td>15</td><td>15</td><td>—</td></tr>
+            <tr><td>X = 23</td><td>10</td><td>25</td><td>—</td></tr>
+            <tr><td>X = 36</td><td>5</td><td>30</td><td>—</td></tr>
+            <tr><td>X = 48</td><td>20</td><td>50</td><td>—</td></tr>
+            <tr><td>X = 60</td><td>10</td><td>60</td><td>—</td></tr>
+            <tr class="row-total"><td>X = 67</td><td>20</td><td>80 ≥ 77,5</td><td>→ X = 67</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ось Y (по возрастанию)</th><th>Грузооборот</th><th>Нарастающий итог</th><th>Результат</th></tr></thead>
+          <tbody>
+            <tr><td>Y = 10</td><td>15</td><td>15</td><td>—</td></tr>
+            <tr><td>Y = 20</td><td>20</td><td>35</td><td>—</td></tr>
+            <tr><td>Y = 27</td><td>5</td><td>40</td><td>—</td></tr>
+            <tr class="row-total"><td>Y = 29</td><td>45</td><td>85 ≥ 77,5</td><td>→ Y = 29</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="c410" width="560" height="380"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#7c6aff"></div>Магазины</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#d4a853;border-radius:2px;"></div>Склад (67; 29)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(212,168,83,0.25);border:1px dashed #d4a853;border-radius:2px;"></div>Медианные линии</div>
+        </div>
+      </div>
+      <div class="conclusion"><strong>Ответ</strong>Координаты оптимального расположения склада: <strong>(67 ; 29)</strong></div>
+    </div>
+  </div>
+
+  <!-- 4.11 -->
+  <div class="task-card">
+    <div class="task-header"><span class="task-number">ЗАДАНИЕ 4.11</span><span class="task-title">Метод пробной точки</span></div>
+    <div class="task-body">
+      <ul class="bullet-list">
+        <li>Общий грузооборот = 170. Половина (медиана) = 85</li>
+      </ul>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ось X (по возрастанию)</th><th>Грузооборот</th><th>Нарастающий итог</th><th>Результат</th></tr></thead>
+          <tbody>
+            <tr><td>X = 10</td><td>15</td><td>15</td><td>—</td></tr>
+            <tr><td>X = 23</td><td>15</td><td>30</td><td>—</td></tr>
+            <tr><td>X = 36</td><td>25</td><td>55</td><td>—</td></tr>
+            <tr><td>X = 48</td><td>10</td><td>65</td><td>—</td></tr>
+            <tr class="row-total"><td>X = 60</td><td>25</td><td>90 ≥ 85</td><td>→ X = 60</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ось Y (по возрастанию)</th><th>Грузооборот</th><th>Нарастающий итог</th><th>Результат</th></tr></thead>
+          <tbody>
+            <tr><td>Y = 10</td><td>15</td><td>15</td><td>—</td></tr>
+            <tr><td>Y = 20</td><td>20</td><td>35</td><td>—</td></tr>
+            <tr><td>Y = 27</td><td>25</td><td>60</td><td>—</td></tr>
+            <tr class="row-total"><td>Y = 29</td><td>45</td><td>105 ≥ 85</td><td>→ Y = 29</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="c411" width="560" height="380"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#7c6aff"></div>Магазины</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#d4a853;border-radius:2px;"></div>Склад (60; 29)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(212,168,83,0.25);border:1px dashed #d4a853;border-radius:2px;"></div>Медианные линии</div>
+        </div>
+      </div>
+      <div class="conclusion"><strong>Ответ</strong>Координаты оптимального расположения склада: <strong>(60 ; 29)</strong></div>
+    </div>
+  </div>
+
+</div><!-- /t4 -->
+
+</main>
+
+<footer>
+  <span class="footer-label">Источник —</span>
+  <a href="https://sverlov.net/" target="_blank" rel="noopener">sverlov.net</a>
+</footer>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    drawAllCharts();
+  }
+
+  /* =========================================================
+     CHART ENGINE
+  ========================================================= */
+  const SHOP_COLOR   = '#7c6aff';
+  const DEPOT_COLOR  = '#d4a853';
+  const GRID_COLOR   = 'rgba(255,255,255,0.06)';
+  const AXIS_COLOR   = 'rgba(255,255,255,0.18)';
+  const LABEL_COLOR  = '#8a8699';
+  const BG_COLOR     = '#111018';
+
+  function drawChart(canvasId, shops, depot, medianX, medianY) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    const PAD = { top: 24, right: 30, bottom: 48, left: 52 };
+    const plotW = W - PAD.left - PAD.right;
+    const plotH = H - PAD.top  - PAD.bottom;
+
+    // Determine ranges
+    const allX = shops.map(s=>s.x).concat(depot.x);
+    const allY = shops.map(s=>s.y).concat(depot.y);
+    const xMin = Math.min(...allX), xMax = Math.max(...allX);
+    const yMin = Math.min(...allY), yMax = Math.max(...allY);
+    const xPad = Math.max((xMax - xMin) * 0.18, 8);
+    const yPad = Math.max((yMax - yMin) * 0.18, 8);
+    const xLo = Math.floor(xMin - xPad), xHi = Math.ceil(xMax + xPad);
+    const yLo = Math.floor(yMin - yPad), yHi = Math.ceil(yMax + yPad);
+
+    const toCanvasX = x => PAD.left + (x - xLo) / (xHi - xLo) * plotW;
+    const toCanvasY = y => PAD.top  + plotH - (y - yLo) / (yHi - yLo) * plotH;
+
+    // Background
+    ctx.fillStyle = BG_COLOR;
+    ctx.fillRect(0, 0, W, H);
+
+    // Grid
+    const xSteps = 8, ySteps = 6;
+    ctx.strokeStyle = GRID_COLOR;
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= xSteps; i++) {
+      const gx = PAD.left + (i / xSteps) * plotW;
+      ctx.beginPath(); ctx.moveTo(gx, PAD.top); ctx.lineTo(gx, PAD.top + plotH); ctx.stroke();
+    }
+    for (let i = 0; i <= ySteps; i++) {
+      const gy = PAD.top + (i / ySteps) * plotH;
+      ctx.beginPath(); ctx.moveTo(PAD.left, gy); ctx.lineTo(PAD.left + plotW, gy); ctx.stroke();
+    }
+
+    // Axes
+    ctx.strokeStyle = AXIS_COLOR;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(PAD.left, PAD.top); ctx.lineTo(PAD.left, PAD.top + plotH);
+    ctx.moveTo(PAD.left, PAD.top + plotH); ctx.lineTo(PAD.left + plotW, PAD.top + plotH);
+    ctx.stroke();
+
+    // Axis labels
+    ctx.fillStyle = LABEL_COLOR;
+    ctx.font = '11px IBM Plex Mono, monospace';
+    ctx.textAlign = 'center';
+    for (let i = 0; i <= xSteps; i++) {
+      const val = xLo + Math.round(i / xSteps * (xHi - xLo));
+      const gx  = PAD.left + (i / xSteps) * plotW;
+      ctx.fillText(val, gx, PAD.top + plotH + 16);
+    }
+    ctx.textAlign = 'right';
+    for (let i = 0; i <= ySteps; i++) {
+      const val = yLo + Math.round(i / ySteps * (yHi - yLo));
+      const gy  = PAD.top + plotH - (i / ySteps) * plotH;
+      ctx.fillText(val, PAD.left - 8, gy + 4);
+    }
+    ctx.textAlign = 'center';
+    ctx.fillText('X', PAD.left + plotW + 16, PAD.top + plotH + 4);
+    ctx.save(); ctx.translate(14, PAD.top + plotH / 2); ctx.rotate(-Math.PI/2);
+    ctx.fillText('Y', 0, 0); ctx.restore();
+
+    // Median lines (dashed) for trial-point tasks
+    if (medianX !== undefined) {
+      const mx = toCanvasX(medianX);
+      ctx.save();
+      ctx.setLineDash([5, 4]);
+      ctx.strokeStyle = 'rgba(212,168,83,0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(mx, PAD.top); ctx.lineTo(mx, PAD.top + plotH); ctx.stroke();
+      ctx.restore();
+    }
+    if (medianY !== undefined) {
+      const my = toCanvasY(medianY);
+      ctx.save();
+      ctx.setLineDash([5, 4]);
+      ctx.strokeStyle = 'rgba(212,168,83,0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(PAD.left, my); ctx.lineTo(PAD.left + plotW, my); ctx.stroke();
+      ctx.restore();
+    }
+
+    // Lines from shops to depot
+    shops.forEach(s => {
+      ctx.save();
+      ctx.setLineDash([3, 5]);
+      ctx.strokeStyle = 'rgba(124,106,255,0.18)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(toCanvasX(s.x), toCanvasY(s.y));
+      ctx.lineTo(toCanvasX(depot.x), toCanvasY(depot.y));
+      ctx.stroke();
+      ctx.restore();
+    });
+
+    // Shop dots
+    shops.forEach((s, i) => {
+      const cx = toCanvasX(s.x), cy = toCanvasY(s.y);
+      const r = Math.max(5, Math.min(14, 4 + (s.w || 10) * 0.25));
+
+      // Glow
+      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 2.5);
+      grad.addColorStop(0, 'rgba(124,106,255,0.35)');
+      grad.addColorStop(1, 'transparent');
+      ctx.beginPath(); ctx.arc(cx, cy, r * 2.5, 0, Math.PI*2);
+      ctx.fillStyle = grad; ctx.fill();
+
+      ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2);
+      ctx.fillStyle = SHOP_COLOR; ctx.fill();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.2; ctx.stroke();
+
+      // Label
+      ctx.fillStyle = '#c8c4d8';
+      ctx.font = 'bold 11px IBM Plex Mono, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(`М${i+1}`, cx, cy - r - 5);
+      ctx.font = '10px IBM Plex Mono, monospace';
+      ctx.fillStyle = LABEL_COLOR;
+      ctx.fillText(`(${s.x};${s.y})`, cx, cy + r + 14);
+    });
+
+    // Depot star / diamond
+    const dx = toCanvasX(depot.x), dy = toCanvasY(depot.y);
+
+    // Glow
+    const dGrad = ctx.createRadialGradient(dx, dy, 0, dx, dy, 24);
+    dGrad.addColorStop(0, 'rgba(212,168,83,0.45)');
+    dGrad.addColorStop(1, 'transparent');
+    ctx.beginPath(); ctx.arc(dx, dy, 24, 0, Math.PI*2);
+    ctx.fillStyle = dGrad; ctx.fill();
+
+    // Diamond shape
+    ctx.save();
+    ctx.translate(dx, dy);
+    ctx.rotate(Math.PI/4);
+    ctx.beginPath();
+    ctx.rect(-8, -8, 16, 16);
+    ctx.fillStyle = DEPOT_COLOR; ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.restore();
+
+    ctx.fillStyle = '#f0c97a';
+    ctx.font = 'bold 11px IBM Plex Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('СКЛАД', dx, dy - 18);
+    ctx.font = '10px IBM Plex Mono, monospace';
+    ctx.fillStyle = DEPOT_COLOR;
+    ctx.fillText(`(${depot.x};${depot.y})`, dx, dy + 26);
+  }
+
+  /* =========================================================
+     DATA per task
+  ========================================================= */
+  const TASKS = {
+    c41: {
+      shops: [
+        {x:10,y:10,w:15},{x:23,y:41,w:10},{x:48,y:59,w:20},{x:36,y:27,w:5},
+        {x:60,y:34,w:10},{x:67,y:20,w:20},{x:81,y:29,w:45},{x:106,y:45,w:30}
+      ],
+      depot: {x:66.35, y:34.00}
+    },
+    c42: {
+      shops: [
+        {x:10,y:10,w:15},{x:23,y:41,w:15},{x:48,y:59,w:10},{x:36,y:27,w:25},
+        {x:60,y:34,w:25},{x:67,y:20,w:20},{x:81,y:29,w:45},{x:106,y:45,w:15}
+      ],
+      depot: {x:58.53, y:30.94}
+    },
+    c43: {
+      shops: [
+        {x:10,y:10,w:15},{x:23,y:41,w:10},{x:48,y:59,w:20},{x:36,y:27,w:5},
+        {x:60,y:34,w:10},{x:67,y:20,w:20},{x:81,y:29,w:45},{x:106,y:45,w:30}
+      ],
+      depot: {x:66.35, y:34.00}
+    },
+    c44: {
+      shops: [
+        {x:40,y:12,w:100},{x:50,y:20,w:110},{x:55,y:45,w:120},{x:36,y:34,w:105},
+        {x:34,y:26,w:80},{x:78,y:58,w:60},{x:59,y:56,w:40},{x:88,y:40,w:57}
+      ],
+      depot: {x:51.57, y:33.41}
+    },
+    c45: {
+      shops: [
+        {x:50,y:20,w:50},{x:60,y:10,w:100},{x:65,y:35,w:110},{x:46,y:24,w:40},
+        {x:44,y:16,w:80},{x:88,y:48,w:50},{x:69,y:46,w:70},{x:98,y:30,w:40}
+      ],
+      depot: {x:63.26, y:27.61}
+    },
+    c46: {
+      shops: [
+        {x:10,y:10,w:225},{x:23,y:41,w:100},{x:48,y:59,w:240},{x:36,y:27,w:90},
+        {x:60,y:34,w:150},{x:67,y:20,w:320},{x:81,y:29,w:585},{x:106,y:45,w:360}
+      ],
+      depot: {x:65.36, y:32.66}
+    },
+    c47: {
+      shops: [
+        {x:10,y:10,w:255},{x:23,y:41,w:225},{x:48,y:59,w:190},{x:36,y:27,w:550},
+        {x:60,y:34,w:450},{x:67,y:20,w:320},{x:81,y:29,w:630},{x:106,y:45,w:285}
+      ],
+      depot: {x:57.25, y:31.20}
+    },
+    c48: {
+      shops: [
+        {x:40,y:12,w:900},{x:50,y:20,w:1100},{x:45,y:55,w:1440},{x:34,y:36,w:1470},
+        {x:26,y:34,w:1440},{x:78,y:58,w:840},{x:59,y:56,w:480},{x:88,y:40,w:912}
+      ],
+      depot: {x:48.63, y:37.98}
+    },
+    c49: {
+      shops: [
+        {x:1,y:50,w:1000},{x:2,y:60,w:1000},{x:3,y:65,w:3850},{x:4,y:46,w:960},
+        {x:5,y:44,w:1280},{x:6,y:88,w:2400},{x:7,y:69,w:3220},{x:8,y:98,w:1200}
+      ],
+      depot: {x:4.78, y:67.85}
+    },
+    c410: {
+      shops: [
+        {x:10,y:10,w:15},{x:23,y:41,w:10},{x:48,y:59,w:20},{x:36,y:27,w:5},
+        {x:60,y:34,w:10},{x:67,y:20,w:20},{x:81,y:29,w:45},{x:106,y:45,w:30}
+      ],
+      depot: {x:67, y:29},
+      medianX: 67, medianY: 29
+    },
+    c411: {
+      shops: [
+        {x:10,y:10,w:15},{x:23,y:41,w:15},{x:48,y:59,w:10},{x:36,y:27,w:25},
+        {x:60,y:34,w:25},{x:67,y:20,w:20},{x:81,y:29,w:45},{x:106,y:45,w:15}
+      ],
+      depot: {x:60, y:29},
+      medianX: 60, medianY: 29
+    }
+  };
+
+  function drawAllCharts() {
+    Object.entries(TASKS).forEach(([id, cfg]) => {
+      drawChart(id, cfg.shops, cfg.depot, cfg.medianX, cfg.medianY);
+    });
+  }
+
+  // Draw on load
+  window.addEventListener('load', drawAllCharts);
+  // Also draw on tab switch (already handled in switchTab)
+</script>
+</body>
+</html>
